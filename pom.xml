@@ -22,6 +22,8 @@
     <kc.version>3.2-SNAPSHOT</kc.version>
     <rice.version>1.0.3.3</rice.version>
     <maven-war-plugin.version>2.2</maven-war-plugin.version>
+    <tomcat6-maven-plugin.version>2.0-beta-1</tomcat6-maven-plugin.version>
+    <tomcat7-maven-plugin.version>2.0-beta-1</tomcat7-maven-plugin.version>
   </properties>
   
   <build>
@@ -51,6 +53,22 @@
                 </includes>
               </resource>
             </webResources>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.tomcat.maven</groupId>
+          <artifactId>tomcat6-maven-plugin</artifactId>
+          <version>${tomcat6-maven-plugin.version}</version>
+          <configuration>
+            <path>/${project.parent.name}-${environment}</path>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.tomcat.maven</groupId>
+          <artifactId>tomcat7-maven-plugin</artifactId>
+          <version>${tomcat7-maven-plugin.version}</version>
+          <configuration>
+            <path>/${project.parent.name}-${environment}</path>
           </configuration>
         </plugin>
       </plugins>

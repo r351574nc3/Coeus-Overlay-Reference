@@ -33,7 +33,6 @@ limitations under the License.
     <finalName>${project.parent.name}-${environment}</finalName>
     <plugins>
       <!-- Unpacks the datadictionary because KFS has trouble accessing the datadictionary from a jar -->      
-      <!--
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
@@ -52,7 +51,7 @@ limitations under the License.
                   <artifactId>kc-core</artifactId>
                   <version>${kc.version}</version>  
                   <type>jar</type>
-                  <overWrite>true</overWrite>
+                  <overWrite>false</overWrite>
                   <outputDirectory>${project.build.outputDirectory}</outputDirectory>
                   <excludes>**/*.class</excludes>
                 </artifactItem>
@@ -61,7 +60,7 @@ limitations under the License.
                   <artifactId>kc-core</artifactId>
                   <version>${project.version}</version>  
                   <type>jar</type>
-                  <overWrite>true</overWrite>
+                  <overWrite>false</overWrite>
                   <outputDirectory>${project.build.outputDirectory}</outputDirectory>
                   <excludes>**/*.class</excludes>
                 </artifactItem>
@@ -70,7 +69,17 @@ limitations under the License.
           </execution>
         </executions>
       </plugin>
-      -->
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat6-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <configuration>
+          <path>/${project.parent.name}-${environment}</path>
+        </configuration>
+      </plugin>
     </plugins>
 
   </build>
