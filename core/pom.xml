@@ -11,6 +11,7 @@
     <artifactId>kc-parent</artifactId>
     <version>3.2-SNAPSHOT</version>
   </parent>
+  <groupId>com.rsmart.kuali.kra</groupId>
   <artifactId>kc-core</artifactId>
   <version>3.2-SNAPSHOT</version>
   <packaging>jar</packaging>
