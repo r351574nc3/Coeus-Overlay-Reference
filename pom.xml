@@ -14,7 +14,7 @@
   <groupId>com.rsmart.kuali.kra</groupId>
   <artifactId>kc-parent</artifactId>
   <packaging>pom</packaging>
-  <name>Kuali Coeus Core</name>
+  <name>kc</name>
   <description>The Kuali Coeus (KC) project is building a comprehensive system to manage the complexities of research administration that fully addresses the needs from the faculty researcher through grants administration to federal funding agencies. KC is using MIT’s proven COEUS system as its baseline design, filling in missing functionality from COEUS, and updating its technical architecture for vendor independence and easier integration with other administration systems.</description>
   <url>http://kuali.org/kc</url>
   
@@ -34,8 +34,8 @@
           <configuration>
             <overlays>
               <overlay>
-                <groupId>${kfs.maven.groupId}</groupId>
-                <artifactId>kfs-web</artifactId>
+                <groupId>org.kuali.kra</groupId>
+                <artifactId>kc-web</artifactId>
                 <excludes>
                   <exclude>WEB-INF/tags/portal/</exclude>
                 </excludes>

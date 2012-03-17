@@ -33,6 +33,7 @@ limitations under the License.
     <finalName>${project.parent.name}-${environment}</finalName>
     <plugins>
       <!-- Unpacks the datadictionary because KFS has trouble accessing the datadictionary from a jar -->      
+      <!--
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
@@ -69,6 +70,7 @@ limitations under the License.
           </execution>
         </executions>
       </plugin>
+      -->
     </plugins>
 
   </build>
