@@ -21,7 +21,41 @@
   <properties>
     <kc.version>3.2-SNAPSHOT</kc.version>
     <rice.version>1.0.3.3</rice.version>
+    <maven-war-plugin.version>2.2</maven-war-plugin.version>
   </properties>
+  
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>${maven-war-plugin.version}</version>
+          <configuration>
+            <overlays>
+              <overlay>
+                <groupId>${kfs.maven.groupId}</groupId>
+                <artifactId>kfs-web</artifactId>
+                <excludes>
+                  <exclude>WEB-INF/tags/portal/</exclude>
+                </excludes>
+              </overlay>
+            </overlays>
+            <webResources>
+              <resource>
+                <filtering>true</filtering>
+                <!-- this is relative to the pom.xml directory -->
+                <directory>src/main/webapp/</directory>
+                <includes>
+                  <include>**/web.xml</include>
+                </includes>
+              </resource>
+            </webResources>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
   
   <dependencyManagement>
     <dependencies>
@@ -31,9 +65,16 @@
         <version>${kc.version}</version>
       </dependency>
       <dependency>
+        <groupId>org.kuali.rice</groupId>
+        <artifactId>rice-web</artifactId>
+        <version>${rice.version}</version>
+        <type>war</type>
+      </dependency>
+      <dependency>
         <groupId>org.kuali.kra</groupId>
         <artifactId>kc-web</artifactId>
         <version>${kc.version}</version>
+        <type>war</type>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -42,4 +83,11 @@
     <module>core</module>
     <module>web</module>
   </modules>
+
+  <repositories>
+    <repository>
+      <id>kualigan-snapshots</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </repository>
+  </repositories>
 </project>

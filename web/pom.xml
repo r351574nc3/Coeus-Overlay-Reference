@@ -83,6 +83,13 @@ limitations under the License.
     <dependency>
       <groupId>org.kuali.kra</groupId>
       <artifactId>kc-web</artifactId>
+      <type>war</type>
+    </dependency>
+
+    <dependency>
+      <groupId>org.kuali.rice</groupId>
+      <artifactId>rice-web</artifactId>
+      <type>war</type>
     </dependency>
   </dependencies> 
 
