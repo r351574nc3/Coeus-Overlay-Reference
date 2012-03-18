@@ -34,27 +34,48 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
           <version>${maven-war-plugin.version}</version>
-          <configuration>
-            <overlays>
-              <overlay>
-                <groupId>org.kuali.kra</groupId>
-                <artifactId>kc-web</artifactId>
-                <excludes>
-                  <exclude>WEB-INF/tags/portal/</exclude>
-                </excludes>
-              </overlay>
-            </overlays>
-            <webResources>
-              <resource>
-                <filtering>true</filtering>
-                <!-- this is relative to the pom.xml directory -->
-                <directory>src/main/webapp/</directory>
-                <includes>
-                  <include>**/web.xml</include>
-                </includes>
-              </resource>
-            </webResources>
-          </configuration>
+          <executions>
+            <execution>
+              <id>default</id>
+              <configuration>
+                <overlays>
+                  <overlay>
+                    <groupId>org.kuali.kra</groupId>
+                    <artifactId>kc-web</artifactId>
+                  </overlay>
+                </overlays>
+                <webResources>
+                  <resource>
+                    <filtering>true</filtering>
+                    <!-- this is relative to the pom.xml directory -->
+                    <directory>src/main/webapp/</directory>
+                    <includes>
+                      <include>**/web.xml</include>
+                    </includes>
+                  </resource>
+                </webResources>
+              </configuration>
+            </execution>
+            <execution>
+              <id>inplace</id>
+              <phase>generate-sources</phase>
+              <goals>
+                <goal>inplace</goal>
+              </goals>
+              <configuration>
+                <overlays>
+                  <overlay>
+                    <groupId>org.kuali.kra</groupId>
+                    <artifactId>kc-web</artifactId>
+                    <excludes>
+                      <exclude>**/classes/**/*</exclude>
+                      <exclude>**/lib/*</exclude>
+                    </excludes>
+                  </overlay>
+                </overlays>
+              </configuration>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.tomcat.maven</groupId>
