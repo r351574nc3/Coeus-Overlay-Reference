@@ -123,9 +123,33 @@ limitations under the License.
     <profile>
       <id>tomcat</id>
       <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.tomcat.maven</groupId>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-war-plugin</artifactId>
+              <version>${maven-war-plugin.version}</version>
+              <executions>
+                <execution>
+                  <id>inplace</id>
+                  <phase>generate-sources</phase>
+                  <configuration>
+                    <overlays>
+                      <overlay>
+                        <groupId>org.kuali.kra</groupId>
+                        <artifactId>kc-web</artifactId>
+                        <excludes>
+                          <exclude>WEB-INF/classes/</exclude>
+                          <exclude>WEB-INF/lib/</exclude>
+                        </excludes>
+                      </overlay>
+                    </overlays>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.tomcat.maven</groupId>
             <artifactId>tomcat6-maven-plugin</artifactId>
             <configuration>
               <path>/${project.parent.name}-${environment}</path>
