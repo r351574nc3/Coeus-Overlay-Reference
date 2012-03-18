@@ -56,22 +56,6 @@
                 </webResources>
               </configuration>
             </execution>
-            <execution>
-              <id>exploded</id>
-              <phase>generate-sources</phase>
-              <goals>
-                <goal>exploded</goal>
-              </goals>
-              <configuration>
-                <useCache>true</useCache>
-                <overlays>
-                  <overlay>
-                    <groupId>org.kuali.kra</groupId>
-                    <artifactId>kc-web</artifactId>
-                  </overlay>
-                </overlays>
-              </configuration>
-            </execution>
           </executions>
         </plugin>
         <plugin>
@@ -100,11 +84,13 @@
               <groupId>mysql</groupId>
               <artifactId>mysql-connector-java</artifactId>
               <version>${mysql.version}</version>
+              <scope>runtime</scope>
             </dependency>
             <dependency>
               <groupId>com.oracle</groupId>
               <artifactId>ojdbc14</artifactId>
               <version>${oracle.version}</version>
+              <scope>runtime</scope>
             </dependency>
           </dependencies>
         </plugin>
@@ -133,80 +119,6 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-
-  <profiles>
-    <profile>
-      <id>tomcat</id>
-      <build>
-        <pluginManagement>
-          <plugins>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-war-plugin</artifactId>
-              <version>${maven-war-plugin.version}</version>
-              <executions>
-                <execution>
-                  <id>exploded</id>
-                  <phase>generate-sources</phase>
-                  <goals>
-                    <goal>exploded</goal>
-                  </goals>
-                  <configuration>
-                    <useCache>true</useCache>
-                    <overlays>
-                      <overlay>
-                        <groupId>org.kuali.kra</groupId>
-                        <artifactId>kc-web</artifactId>
-                      </overlay>
-                    </overlays>
-                  </configuration>
-                </execution>
-              </executions>
-            </plugin>
-            <plugin>
-              <groupId>org.apache.tomcat.maven</groupId>
-              <artifactId>tomcat6-maven-plugin</artifactId>
-              <version>${tomcat6-maven-plugin.version}</version>
-              <dependencies>
-                <dependency>
-                  <groupId>mysql</groupId>
-                  <artifactId>mysql-connector-java</artifactId>
-                  <version>${mysql.version}</version>
-                </dependency>
-                <dependency>
-                  <groupId>com.oracle</groupId>
-                  <artifactId>ojdbc14</artifactId>
-                  <version>${oracle.version}</version>
-                </dependency>
-              </dependencies>
-            </plugin>
-            <plugin>
-              <groupId>org.apache.tomcat.maven</groupId>
-              <artifactId>tomcat7-maven-plugin</artifactId>
-              <version>${tomcat7-maven-plugin.version}</version>
-              <configuration>
-                <path>/kc-dev</path>
-                <warDirectory>${project.build.directory}/kc-dev</warDirectory>
-              </configuration>
-              <dependencies>
-                <dependency>
-                  <groupId>mysql</groupId>
-                  <artifactId>mysql-connector-java</artifactId>
-                  <version>${mysql.version}</version>
-                </dependency>
-                <dependency>
-                  <groupId>com.oracle</groupId>
-                  <artifactId>ojdbc14</artifactId>
-                  <version>${oracle.version}</version>
-                </dependency>
-              </dependencies>
-            </plugin>
-          </plugins>
-
-        </pluginManagement>
-      </build>
-    </profile>
-  </profiles>
   
   <modules>
     <module>core</module>
