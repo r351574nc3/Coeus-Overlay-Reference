@@ -28,6 +28,9 @@ limitations under the License.
   
   <properties>
     <environment>dev</environment>
+    <servlet-api.version>2.5</servlet-api.version>
+    <jsp-api.version>2.1</jsp-api.version>
+    <jstl.version>1.2</jstl.version>
   </properties>
 
   <build>
@@ -127,6 +130,13 @@ limitations under the License.
             <configuration>
               <path>/${project.parent.name}-${environment}</path>
             </configuration>
+            <dependencies>
+              <dependency>
+                <groupId>org.kuali.kra</groupId>
+                <artifactId>kc-core</artifactId>
+                <version>3.2-SNAPSHOT</version>
+              </dependency>
+            </dependencies>
           </plugin>
           <plugin>
             <groupId>org.apache.tomcat.maven</groupId>
